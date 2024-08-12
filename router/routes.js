@@ -15,7 +15,7 @@ const noteController = require("../controller/noteController");
  *       200:
  *         description: Successful response with a list of users.
  */
-//router.get("/allNotes", noteController.get_all_notes);
+router.get("/allNotes", noteController.get_all_notes);
 
 //done
 router.post("/addNote", noteController.add_note);

@@ -20,6 +20,7 @@ const get_all_notes = (req, res) => {
 
     const note = await  Note.findByPk(req.params.noteId);
     if (note === null) {
+      res.status(404)
         return res.json(
             {msg: "Note not Found!",
             content: null}

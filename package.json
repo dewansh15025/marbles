@@ -4,7 +4,8 @@
   "description": "Notes application backend server for MarblesHealth",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha **/*.test.mjs && mocha --reporter json > reports/test-results.json",
+    "report": "mocha --reporter mochawesome"
   },
   "author": "Dewansh",
   "license": "ISC",
@@ -18,5 +19,10 @@
     "sequelize": "^6.37.3",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "chai": "^5.1.1",
+    "mocha": "^10.7.3",
+    "supertest": "^7.0.0"
   }
 }
