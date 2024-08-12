@@ -24,12 +24,12 @@ const options = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'Your API Title',
+      title: 'Simple Note Application',
       version: '1.0.0',
-      description: 'API documentation for your Node.js application',
+      description: 'API documentation for Simple Note Application',
     },
   },
-  apis: ['./routes/*.js'], // Path to the API routes
+  apis: ['./router/*.js'], // Path to the API routes
 };
 const swaggerSpec = swaggerJSDoc(options);
 module.exports = swaggerSpec;
