@@ -11,7 +11,7 @@ node.js, mysql
 3) npm install
 4) node app.js in project directory
 5) swagger api will be available at "http://localhost:4151/api-docs"
-### docker build - quick start 
+### 🚀 docker build - quick start 
 1) install docker and docker compose
 2) go to project directory in cmd and type "docker compose up"
 3) swagger api will be available at "http://localhost:4151/api-docs"
