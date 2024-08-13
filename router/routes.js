@@ -32,7 +32,7 @@ router.get("/allNotes", noteController.getAllNotes);
 
 /**
  * @swagger
- * /addNote:
+ * /notes:
  *   post:
  *     description: Create a new note
  *     tags:
@@ -40,7 +40,7 @@ router.get("/allNotes", noteController.getAllNotes);
  *     produces:
  *       - application/json
  *     parameters:
- *       - name: note
+ *       - name: Note
  *         description: note object
  *         in: body
  *         required: true
@@ -60,7 +60,7 @@ router.get("/allNotes", noteController.getAllNotes);
  *         schema:
  *           $ref: '#/definitions/Note'  
  */
-router.post("/addNote", noteController.addNote);
+router.post("/notes", noteController.addNote);
 //done
 /**
  * @swagger
@@ -103,7 +103,7 @@ router.get("/notes", noteController.getNote);
  *     produces:
  *       - application/json
  *     parameters:
- *       - name: noteId
+ *       - name: notesId
  *         description: uuid of the note to retrieve
  *         in: path
  *         required: true

@@ -19,7 +19,9 @@ const getAllNotes = (req, res) => {
 
   const  getNoteById = async(req,res) => {
 
-    const note = await  Note.findByPk(req.params.noteId).catch((error)=>res.status.send({msg:error.message||"something went wrong"}));
+    console.log(req.params.noteId)
+    const note = await  Note.findByPk(req.params.noteId);
+    console.log(note)
     if (note === null) {
       
         return res.status(404).send(
@@ -74,8 +76,8 @@ const getAllNotes = (req, res) => {
 
   const updateNote = async (req, res) => {
     const id = req.params.noteId;
-
-    const note = await  Note.findByPk(req.params.noteId);
+console.log(id)
+    const note = await  Note.findByPk(id);
     if (note === null) {
         return res.status(404).send(
             {msg: "Note not Found!",
