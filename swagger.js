@@ -29,7 +29,8 @@ const options = {
       description: 'API documentation for Simple Note Application',
     },
   },
-  apis: ['./router/*.js'], // Path to the API routes
+  
+  apis: ['./router/*.js','./models/*.js'], // Path to the API routes
 };
 const swaggerSpec = swaggerJSDoc(options);
 module.exports = swaggerSpec;

@@ -6,26 +6,28 @@ const  sequelize = db.sequelize;
 /**
  * @swagger
  * definitions:
- *   Stock:
+ *   Note:
  *     type: object
  *     required:
- *       - id
- *       - name
- *       - currentPrice
- *       - lastUpdate
+ *       - title
+ *       - body
  *     properties:
- *       id:
- *         type: number
- *       name:
+ *       uuid:
  *         type: string
- *       currentPrice:
- *         type: number
- *       lastUpdate:
- *         type: number
- *   Stocks:
+ *       title:
+ *         type: string
+ *       body:
+ *         type: string
+ *       createAt:
+ *         type: string
+ *         format: date-time
+ *       lastUpdatedAt:
+ *          type: string
+ *          format: date-time
+ *   Notes:
  *     type: array
  *     items:
- *       $ref: '#/definitions/Stock'
+ *       $ref: '#/definitions/Note'
  */
 
 sequelize.authenticate().then(() => {

@@ -9,48 +9,86 @@ const noteController = require("../controller/noteController");
  * @swagger
  * /allNotes:
  *   get:
- *     summary: Get a list of notes
- *     description: Retrieve a list of notes from the database.
+ *     description: Retrieve the full list of notes
+ *     tags:
+ *       - Note
+ *     produces:
+ *       - application/json
  *     responses:
  *       200:
- *         description: message and content list with all notes.
+ *         description: notes
+ *         schema:
+ *           $ref: '#/definitions/Note'
  */
 router.get("/allNotes", noteController.get_all_notes);
 
-//done
 /**
  * @swagger
- * /allNotes:
- *   get:
- *     summary: Get a list of notes
- *     description: Retrieve a list of notes from the database.
+ * /addNote:
+ *   post:
+ *     description: Create a new note
+ *     tags:
+ *       - Note
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: note
+ *         description: note object
+ *         in: body
+ *         required: true
+ *         schema:
+ *           $ref: '#/definitions/Note'
  *     responses:
  *       200:
- *         description: message and content list with all notes.
+ *         description: new note object
+ *         schema:
+ *           $ref: '#/definitions/Note'
  */
 router.post("/addNote", noteController.add_note);
 //done
 /**
  * @swagger
- * /allNotes:
+ * /notes/?title=abc:
  *   get:
- *     summary: Get a list of notes
- *     description: Retrieve a list of notes from the database.
+ *     description: Retrieve notes containing substring
+ *     tags:
+ *       - Note
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: title
+ *         description: substring of title
+ *         in: query
+ *         required: true
+ *         type: string
  *     responses:
  *       200:
- *         description: message and content list with all notes.
+ *         description: list of notes
+ *         schema:
+ *           $ref: '#/definitions/Note'
  */
 router.get("/notes", noteController.get_note);
 
 /**
  * @swagger
- * /allNotes:
+ * /notes/{notesId}:
  *   get:
- *     summary: Get a list of notes
- *     description: Retrieve a list of notes from the database.
+ *     description: Retrieve an specific note
+ *     tags:
+ *       - Note
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: noteId
+ *         description: uuid of the note to retrieve
+ *         in: path
+ *         required: true
+ *         type: string
  *     responses:
  *       200:
- *         description: message and content list with all notes.
+ *         description: note
+ *         schema:
+ *           $ref: '#/definitions/Note'
  */
 router.get("/notes/:noteId",noteController.get_get_note_by_id);
 
@@ -58,18 +96,30 @@ router.get("/notes/:noteId",noteController.get_get_note_by_id);
  * @swagger
  * /notes/{noteId}:
  *   put:
- *     summary: Edit note with note id
- *     description: edit a note with note id in path param and object to be updated with in request body
+ *     description: Update title,body field of a note
+ *     tags:
+ *       - Note
+ *     produces:
+ *       - application/json
  *     parameters:
-        - in: path
-          name: noteId
-          type: uuid
-          required: true
-          description: uuids of the Not to be edited.
+ *       - name: noteId
+ *         description: noteId of the note to update
+ *         in: path
+ *         required: true
+ *         type: string
+ *       - name: note object
+ *         description: new note object,  updates will be pushed to db
+ *         in: body
+ *         required: true
+ *         schema:
+ *           $ref: '#/definitions/Note'
  *     responses:
  *       200:
- *         description: message and content with updated note
+ *         description: updated note
+ *         schema:
+ *           $ref: '#/definitions/Note'
  */
+
 router.put("/notes/:noteId",noteController.update_note);
 
 
