@@ -39,13 +39,15 @@ router.get("/allNotes", noteController.getAllNotes);
  *       - Note
  *     produces:
  *       - application/json
- *     parameters:
- *       - name: Note
- *         description: note object
- *         in: body
+ *     
+ *     requestBody:
  *         required: true
- *         schema:
- *           $ref: '#/definitions/Note'
+ *         description: Optional descriptio
+ *         content:
+ *           application/json:
+ *            schema:
+ *              $ref: '#/definitions/Note'
+ * 
  *     responses:
  *       200:
  *         description: new note object
@@ -139,12 +141,16 @@ router.get("/notes/:noteId",noteController.getNoteById);
  *         in: path
  *         required: true
  *         type: string
- *       - name: note object
- *         description: new note object,  updates will be pushed to db
- *         in: body
+ *       
+ *     requestBody:
  *         required: true
- *         schema:
- *           $ref: '#/definitions/Note'
+ *         description: Optional descriptio
+ *         content:
+ *           application/json:
+ *            schema:
+ *              $ref: '#/definitions/Note'      
+ * 
+ * 
  *     responses:
  *       200:
  *         description: updated note
