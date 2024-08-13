@@ -26,7 +26,7 @@ node.js, mysql
 
 ### Additional features
 - [x] Docker.
-- [x] Swagger-partially implemented with post and put request not working.
+- [x] Swagger-working for get, not working for put and post.
 - [x] Supertest for testing endpoints
 
 ## for testing
