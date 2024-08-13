@@ -20,7 +20,7 @@ const noteController = require("../controller/noteController");
  *         schema:
  *           $ref: '#/definitions/Note'
  */
-router.get("/allNotes", noteController.get_all_notes);
+router.get("/allNotes", noteController.getAllNotes);
 
 /**
  * @swagger
@@ -44,7 +44,7 @@ router.get("/allNotes", noteController.get_all_notes);
  *         schema:
  *           $ref: '#/definitions/Note'
  */
-router.post("/addNote", noteController.add_note);
+router.post("/addNote", noteController.addNote);
 //done
 /**
  * @swagger
@@ -67,7 +67,7 @@ router.post("/addNote", noteController.add_note);
  *         schema:
  *           $ref: '#/definitions/Note'
  */
-router.get("/notes", noteController.get_note);
+router.get("/notes", noteController.getNote);
 
 /**
  * @swagger
@@ -90,7 +90,7 @@ router.get("/notes", noteController.get_note);
  *         schema:
  *           $ref: '#/definitions/Note'
  */
-router.get("/notes/:noteId",noteController.get_get_note_by_id);
+router.get("/notes/:noteId",noteController.getNoteById);
 
 /**
  * @swagger
@@ -120,7 +120,7 @@ router.get("/notes/:noteId",noteController.get_get_note_by_id);
  *           $ref: '#/definitions/Note'
  */
 
-router.put("/notes/:noteId",noteController.update_note);
+router.put("/notes/:noteId",noteController.updateNote);
 
 
 // Exports

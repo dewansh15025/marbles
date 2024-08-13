@@ -3,7 +3,7 @@ const db = require('../database.js');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
-const get_all_notes = (req, res) => {
+const getAllNotes = (req, res) => {
    const users =  Note.findAll().then((result)=>{
     if (result.length > 0) {
                  res.json({
@@ -16,7 +16,7 @@ const get_all_notes = (req, res) => {
    }).catch((error) => res.json({ msg: error.message }));;
   };
 
-  const  get_get_note_by_id = async(req,res) => {
+  const  getNoteById = async(req,res) => {
 
     const note = await  Note.findByPk(req.params.noteId);
     if (note === null) {
@@ -34,7 +34,7 @@ const get_all_notes = (req, res) => {
 
    };
 
-  const get_note = async (req, res) => {
+  const getNote = async (req, res) => {
 
     const users = await Note.findAll({
         where: {
@@ -55,7 +55,7 @@ const get_all_notes = (req, res) => {
    };
   
   // To add a new note to the database
-  const add_note = async(req, res) => {
+  const addNote = async(req, res) => {
     
 
     const jane =await Note.create({ title: req.body.title, body: req.body.body }).then((result)=>{
@@ -66,7 +66,7 @@ const get_all_notes = (req, res) => {
     }).catch((error) => res.json({ msg: error.message }));;
   };
 
-  const update_note = async (req, res) => {
+  const updateNote = async (req, res) => {
     const id = req.params.noteId;
 
     const note = await  Note.findByPk(req.params.noteId);
@@ -87,9 +87,9 @@ const get_all_notes = (req, res) => {
 
 
   module.exports = {
-    get_all_notes,
-    add_note,
-    get_note,
-    get_get_note_by_id,
-    update_note,
+    getAllNotes,
+    addNote,
+    getNote,
+    getNoteById,
+    updateNote,
   };
