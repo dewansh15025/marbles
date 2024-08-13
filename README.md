@@ -18,14 +18,14 @@ node.js, mysql
 
 ### Implemented APIs
 - [x] POST /notes/: Create a new note.
-- [x] GET /notes/: Fetch a note by its primary key.
+- [x] GET /notes/{noteId}: Fetch a note by its primary key.
 - [x] GET /notes?title=<substring>: Query notes by title substring.
-- [x] PUT /notes/: Update an existing note.
+- [x] PUT /notes/{noteId}: Update an existing note.
 - [x] GET /allNotes/: Fetch all notes in db.
 
 ### Additional features
 - [x] Docker.
-- [x] Swagger-working for get, not working for put and post, documentation for all apis available.
+- [x] Swagger api docs.
 - [x] Supertest for testing endpoints
 
 ## for testing
