@@ -3,30 +3,31 @@ const db = require('../database.js');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
+
 const getAllNotes = (req, res) => {
    const users =  Note.findAll().then((result)=>{
     if (result.length > 0) {
-                 res.json({
+                 res.send({
                  msg: "All notes have been fetched successfully!",
                  content: result,
                });
              } else {
-               res.json({ msg: "No notes to show!" });
+               res.status(204).send({ msg: "No notes to show!" });
              }
-   }).catch((error) => res.json({ msg: error.message }));;
+   }).catch((error) => res.status(500).send({ msg: error.message }));;
   };
 
   const  getNoteById = async(req,res) => {
 
-    const note = await  Note.findByPk(req.params.noteId);
+    const note = await  Note.findByPk(req.params.noteId).catch((error)=>res.status.send({msg:error.message||"something went wrong"}));
     if (note === null) {
-      res.status(404)
-        return res.json(
+      
+        return res.status(404).send(
             {msg: "Note not Found!",
             content: null}
             );
     } else {
-      return res.json(
+      return res.status(200).send(
                     {msg: "Note Found!",
                     content: note}
                     );
@@ -44,26 +45,31 @@ const getAllNotes = (req, res) => {
         }
       }).then((result)=>{
      if (result.length > 0) {
-                  res.json({
+                  res.send({
                   msg: `All notes containing "${req.query.title}" been fetched successfully!`,
                   content: result,
                 });
               } else {
-                res.json({ msg: "No notes to show!" });
+                res.status(204).send({ msg: "No notes to show!" });
               }
-    }).catch((error) => res.json({ msg: error.message }));;
+    }).catch((error) => res.status(500).send({ msg: error.message || "Some error occurred while retrieving notes."}));;
    };
   
   // To add a new note to the database
   const addNote = async(req, res) => {
-    
+    console.log(req.body)
+    if(Object.keys(req.body).length === 0||!req.body?.title || !req.body?.body) {
+      return res.status(400).send({
+          msg: "Note must have body and title"
+      });
+  }
 
     const jane =await Note.create({ title: req.body.title, body: req.body.body }).then((result)=>{
-        res.json({
+        res.send({
             msg: "Your note was saved successfully!",
             content: result, 
         })
-    }).catch((error) => res.json({ msg: error.message }));;
+    }).catch((error) => res.status(500).send({ msg: error.message || "Some error occurred while creating the Note."}));;
   };
 
   const updateNote = async (req, res) => {
@@ -71,13 +77,16 @@ const getAllNotes = (req, res) => {
 
     const note = await  Note.findByPk(req.params.noteId);
     if (note === null) {
-        return res.json(
+        return res.status(404).send(
             {msg: "Note not Found!",
             content: null}
             );
     } else {
-      await note.update(req.body);
-      return res.json({
+      if(!req.body){
+        return res.status(400).send({msg:"Note must not be empty"})
+      }
+      await note.update(req.body).catch(error=>{msg: error.message||"something went wrong"});
+      return res.status(200).send({
         msg: "The note was updated successfully!",
         content: note,
       });

@@ -19,6 +19,14 @@ const noteController = require("../controller/noteController");
  *         description: notes
  *         schema:
  *           $ref: '#/definitions/Note'
+ *       204:
+ *         description: no notes in db
+ *         schema:
+ *           $ref: '#/definitions/Note'
+ *       500:
+ *         description: something went wrong
+ *         schema:
+ *           $ref: '#/definitions/Note'
  */
 router.get("/allNotes", noteController.getAllNotes);
 
@@ -43,6 +51,14 @@ router.get("/allNotes", noteController.getAllNotes);
  *         description: new note object
  *         schema:
  *           $ref: '#/definitions/Note'
+ *       400:
+ *         description: bad request, note must have body and title
+ *         schema:
+ *           $ref: '#/definitions/Note' 
+ *       500:
+ *         description: something went wrong
+ *         schema:
+ *           $ref: '#/definitions/Note'  
  */
 router.post("/addNote", noteController.addNote);
 //done
@@ -66,6 +82,14 @@ router.post("/addNote", noteController.addNote);
  *         description: list of notes
  *         schema:
  *           $ref: '#/definitions/Note'
+ *       204:
+ *         description: no notes present in db
+ *         schema:
+ *           $ref: '#/definitions/Note'
+ *       500:
+ *         description: something went wrong
+ *         schema:
+ *           $ref: '#/definitions/Note' 
  */
 router.get("/notes", noteController.getNote);
 
@@ -87,6 +111,14 @@ router.get("/notes", noteController.getNote);
  *     responses:
  *       200:
  *         description: note
+ *         schema:
+ *           $ref: '#/definitions/Note'
+ *       404:
+ *         description: note not found
+ *         schema:
+ *           $ref: '#/definitions/Note' 
+ *       500:
+ *         description: something went wrong
  *         schema:
  *           $ref: '#/definitions/Note'
  */
@@ -118,6 +150,19 @@ router.get("/notes/:noteId",noteController.getNoteById);
  *         description: updated note
  *         schema:
  *           $ref: '#/definitions/Note'
+ *       404:
+ *         description: note not found
+ *         schema:
+ *           $ref: '#/definitions/Note'
+ *       400:
+ *         description: Note must not be empty
+ *         schema:
+ *           $ref: '#/definitions/Note' 
+ *       500:
+ *         description: something went wrong
+ *         schema:
+ *           $ref: '#/definitions/Note'
+ * 
  */
 
 router.put("/notes/:noteId",noteController.updateNote);
