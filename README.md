@@ -23,6 +23,7 @@ node.js, mysql
 - [x] GET /notes/: Fetch a note by its primary key.
 - [x] GET /notes?title=<substring>: Query notes by title substring.
 - [x] PUT /notes/: Update an existing note.
+- [x] GET /allNotes/: Fetch all notes in db.
 
 ### Additional features
 - [x] Docker.
